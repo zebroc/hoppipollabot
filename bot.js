@@ -8,13 +8,11 @@ var sessions = {}
 var findOrCreateSession = function (fbid) {
     var sessionId
 
-    Object.keys(sessions).forEach(k = > {
-        if (sessions[k].fbid === fbid
-    )
-    {
-        sessionId = k
-    }
-})
+    Object.keys(sessions).forEach(k => {
+        if (sessions[k].fbid === fbid) {
+            sessionId = k
+        }
+    })
 
     if (!sessionId) {
         sessionId = new Date().toISOString()

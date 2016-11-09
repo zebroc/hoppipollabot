@@ -39,7 +39,7 @@ var actions = {
     },
 
     merge(sessionId, context, entities, message, cb) {
-        console.log('Here are the ents: ', entities);
+        console.log('Here are the entities: ', entities);
         // Reset the weather story
         delete context.forecast;
 
@@ -57,6 +57,13 @@ var actions = {
         if (category) {
             context.cat = category
         }
+
+        // Retrieve the season
+        var season = firstEntityValue(entities, 'season');
+        if (season) {
+            context.season = season
+        }
+
 
         // Retrieve the sentiment
         var sentiment = firstEntityValue(entities, 'sentiment');
@@ -77,17 +84,17 @@ var actions = {
         console.log('Fetch-advice got season: ', context.season);
 
         if (context.season === 'Sommer') {
-            context.advice='Im Sommer kannst du im Grunde jedes beliebige Auto mieten, so lange du dich auf den' +
+            context.advice = 'Im Sommer kannst du im Grunde jedes beliebige Auto mieten, so lange du dich auf den' +
                 'normalen Straßen aufhältst und nicht auf F-Straßen. Ein Kleinwagen, Bus oder Kombi ist OK.';
         } else if (context.season === 'Winter') {
-            context.advice='Im Winter, wenn die Wahrscheinlichkeit für Schnee nahezu 100% ist, würde ich immer einen' +
+            context.advice = 'Im Winter, wenn die Wahrscheinlichkeit für Schnee nahezu 100% ist, würde ich immer einen' +
                 'Allradwagen empfehlen, also zum Beispiel ein SUV.';
         } else if (context.season === 'Frühling') {
-            context.advice='Im Frühling wie im Herbst solltest du das Wetter beobachten und je nachdem entscheiden: ' +
+            context.advice = 'Im Frühling wie im Herbst solltest du das Wetter beobachten und je nachdem entscheiden: ' +
                 'War es ein strammer Winter solltest du im Frühling vorsichtig sein und lieber einen Allradler mieten. ' +
                 'War der Winter milde und die Vorhersagen ähnlich kann man evtl. auch das Risiko eingehen ein normales Fahrzeug zu mieten.';
         } else if (context.season === 'Herbst') {
-            context.advice='Im Herbst wie im Frühling solltest du das Wetter beobachten und je nachdem entscheiden: ' +
+            context.advice = 'Im Herbst wie im Frühling solltest du das Wetter beobachten und je nachdem entscheiden: ' +
                 'War es ein strammer Winter solltest du im Frühling vorsichtig sein und lieber einen Allradler mieten. ' +
                 'War der Winter milde und die Vorhersagen ähnlich kann man evtl. auch das Risiko eingehen ein normales Fahrzeug zu mieten.';
         }

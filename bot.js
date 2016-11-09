@@ -45,9 +45,7 @@ var read = function (sender, message, reply) {
                     console.log('Waiting for further messages');
                     sessions[sessionId].context = context
                 }
-            })
-
-        sessions[sessionId] = null;
+            });
     }
 };
 

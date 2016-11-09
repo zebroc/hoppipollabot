@@ -16,6 +16,11 @@ var newRequest = request.defaults({
 });
 
 var newMessage = function (recipientId, msg, atts, cb) {
+    console.log('newMessage: ', recipientId);
+    console.log('newMessage: ', msg);
+    console.log('newMessage: ', atts);
+    console.log('newMessage: ', cb);
+
     var opts = {
         form: {
             recipient: {
@@ -48,6 +53,8 @@ var newMessage = function (recipientId, msg, atts, cb) {
 };
 
 var getMessageEntry = function (body) {
+    console.log('getMessageEntry: ', body);
+
     var val = body.object === 'page' &&
         body.entry &&
         Array.isArray(body.entry) &&

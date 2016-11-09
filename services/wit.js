@@ -26,8 +26,10 @@ var actions = {
         }
 
         console.log('WIT WANTS TO TALK TO:', context._fbid_);
+        console.log('SESSION ID:', sessionId);
         console.log('WIT HAS SOMETHING TO SAY:', message);
         console.log('WIT HAS A CONTEXT:', context);
+        console.log('CALLBACK:', cb);
 
         if (checkURL(message)) {
             FB.newMessage(context._fbid_, message, true)

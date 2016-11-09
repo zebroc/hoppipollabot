@@ -46,6 +46,8 @@ var read = function (sender, message, reply) {
                     sessions[sessionId].context = context
                 }
             })
+
+        sessions[sessionId] = null;
     }
 };
 

@@ -64,7 +64,6 @@ var actions = {
             context.season = season
         }
 
-
         // Retrieve the sentiment
         var sentiment = firstEntityValue(entities, 'sentiment');
         if (sentiment) {
@@ -140,7 +139,6 @@ var getWeather = function (context, cb) {
         if (!error && response.statusCode == 200) {
             var jsonData = JSON.parse(body);
             var forecast = jsonData.query.results.channel.item.condition.text;
-
 
             if (context.location) {
                 context.weather = forecast || 'Super';

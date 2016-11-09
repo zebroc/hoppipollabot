@@ -1,21 +1,21 @@
-'use strict'
+'use strict';
 
-var Config = require('./config')
-var wit = require('./services/wit').getWit()
+var Config = require('./config');
+var wit = require('./services/wit').getWit();
 
-var sessions = {}
+var sessions = {};
 
 var findOrCreateSession = function (fbid) {
-    var sessionId
+    var sessionId;
 
     Object.keys(sessions).forEach(k => {
         if (sessions[k].fbid === fbid) {
             sessionId = k
         }
-    })
+    });
 
     if (!sessionId) {
-        sessionId = new Date().toISOString()
+        sessionId = new Date().toISOString();
         sessions[sessionId] = {
             fbid: fbid,
             context: {
@@ -25,14 +25,14 @@ var findOrCreateSession = function (fbid) {
     }
 
     return sessionId
-}
+};
 
 var read = function (sender, message, reply) {
     if (message === 'hello') {
-        message = 'Hello yourself!'
+        message = 'Hello yourself!';
         reply(sender, message)
     } else {
-        var sessionId = findOrCreateSession(sender)
+        var sessionId = findOrCreateSession(sender);
 
         wit.runActions(
             sessionId,
@@ -42,14 +42,14 @@ var read = function (sender, message, reply) {
                 if (error) {
                     console.log('oops!', error)
                 } else {
-                    console.log('Waiting for further messages')
+                    console.log('Waiting for further messages');
                     sessions[sessionId].context = context
                 }
             })
     }
-}
+};
 
 module.exports = {
     findOrCreateSession: findOrCreateSession,
     read: read,
-}
+};
